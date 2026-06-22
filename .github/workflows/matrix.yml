@@ -1,0 +1,16 @@
+name: matrix
+on: 
+  workflow_dispatch:
+jobs:
+  first:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.10', '3.11', '3.12']
+    steps:
+      - name: installation
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python }}
+          
+  
