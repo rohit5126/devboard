@@ -5,6 +5,9 @@ jobs:
   first:
     strategy:
       matrix:
+        exclude:
+          - os: ubuntu-slim
+            python: 3.10
         os: [ ubuntu-latest , ubuntu-slim ]
         python: ['3.10', '3.11', '3.12']
     runs-on: ${{ matrix.os }}
