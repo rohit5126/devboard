@@ -9,6 +9,15 @@ jobs:
         uses: actions/checkout@v7
       - name: hello
         run: echo "hello from github actions"
+      - name: date
+        run: date
+      - name: branch-name
+        run:  echo " the branch is ${{ github.ref_name }}
+      - name: files-in-repo
+        run: ls -l
+      - name: host-os
+        run: cat /etc/os-release
+        
   
   
 
