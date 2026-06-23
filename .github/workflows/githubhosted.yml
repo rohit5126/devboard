@@ -17,6 +17,8 @@ jobs:
         run: whoami
   job2:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
     steps:
       - name: docker version
         run: docker version
