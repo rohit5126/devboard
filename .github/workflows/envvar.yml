@@ -1,0 +1,23 @@
+name: envvar
+on:
+  workflow_dispatch: 
+env:
+  appname: myapp
+jobs:
+  code:
+    runs-on: ubuntu-latest
+    env:
+      environment: staging
+    steps:
+      - name: code-checkout
+        uses: actions/checkout@v7
+      - name: staging area
+        run: echo " this is $environment area"
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: testing
+        env:
+          version: 1.0.0
+        run: "this is testing for $appname $version"
+        
