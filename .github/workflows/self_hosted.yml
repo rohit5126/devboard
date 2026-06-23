@@ -1,5 +1,8 @@
 name: sfhosted
 on:
+  push:
+    branches: master
+    paths: .github/workflows/self_hosted.yml
   workflow_dispatch:
 
 jobs:
@@ -7,7 +10,7 @@ jobs:
     outputs:
       out1: ${{ steps.step1.outputs.text }}
       out2: ${{ steps.step2.outputs.text }}
-      out3: ${{ steps.step2.outputs.text }}
+      out3: ${{ steps.step3.outputs.text }}
       
     runs-on: [self-hosted, linux-practice]
     strategy:
