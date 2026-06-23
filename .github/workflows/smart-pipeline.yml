@@ -1,0 +1,24 @@
+name: sp
+on:
+  push:  
+
+jobs:
+  lint:
+    steps:
+      - name: lint job
+        run: "lint job running"
+  test:
+    steps:
+      - name: test job
+        run: "test job is running
+  summary:
+    needs: [ lint,test ]
+    steps:
+      - name: branch
+        if: ${{ github.ref_name == 'master' }}
+        run: "this is master branch"
+      - name: feature
+        if: ${{ github.ref_name == 'dev' }}
+        run: "this dev branch"
+      - name: commit
+        run: echo " ${{ github.event.head_commit.message }}"
