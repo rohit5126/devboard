@@ -14,8 +14,11 @@ jobs:
         uses: actions/checkout@v7
       - id: step2
         run: |
-         myfile=$(ls -l)
-         echo "test=$myfile" >> "$GITHUB_OUTPUT"
+          {
+             echo "files<<EOF"
+             ls -l
+             echo "EOF" 
+          }  >> "$GITHUB_OUTPUT"
       - id: step3
         run: echo "test=world" >> "$GITHUB_OUTPUT"
 
