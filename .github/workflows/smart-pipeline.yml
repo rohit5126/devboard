@@ -7,21 +7,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: lintjob
-        run: "lint job running"
+        run: echo "lint job running"
   test:
     runs-on: ubuntu-latest
     steps:
       - name: testjob
-        run: "test job is running"
+        run: echo "test job is running"
   summary:
     runs-on: ubuntu-latest
     needs: [ lint,test ]
     steps:
       - name: branch
         if: ${{ github.ref_name == 'master' }}
-        run: "this is master branch"
+        run: echo "this is master branch"
       - name: feature
         if: ${{ github.ref_name == 'dev' }}
-        run: "this dev branch"
+        run: echo "this dev branch"
       - name: commit
         run: echo " ${{ github.event.head_commit.message }}"
