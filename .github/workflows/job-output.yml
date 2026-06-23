@@ -9,7 +9,7 @@ jobs:
     outputs:
       output1: ${{ steps.step2.outputs.files }}
       output2: ${{ steps.step3.outputs.test }}
-      output3: ${{ steps.step4.outputs.text }}
+      output3: ${{ steps.step4.outputs.test }}
     steps:
       - name: code
         uses: actions/checkout@v7
@@ -24,8 +24,8 @@ jobs:
         run: echo "test=world" >> "$GITHUB_OUTPUT"
       - id: step4
         run: |
-          date=$(date)
-          echo "text=$date" >> "$github_outputs"
+          text=$(date)
+          echo "test=$text" >> "$github_outputs"
 
   job2:
     runs-on: ubuntu-slim
