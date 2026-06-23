@@ -19,5 +19,5 @@ jobs:
       - name: testing
         env:
           version: 1.0.0
-        run: "this is testing for $appname $version"
+        run: echo "this is testing for $appname $version"
         
