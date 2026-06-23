@@ -33,9 +33,10 @@ jobs:
     env:
       ro: ${{ needs.job1.outputs.output1 }}
       ar: ${{ needs.job1.outputs.output2 }}
+      da: ${{ needs.job1.outputs.output3 }}
 
     steps:
      - name: print
        run: echo " $ro "
      - name: date
-       run: 
+       run: echo "$da"
