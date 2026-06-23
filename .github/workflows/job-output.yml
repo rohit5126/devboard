@@ -25,7 +25,7 @@ jobs:
       - id: step4
         run: |
           text=$(date)
-          echo "test=$text" >> "$github_outputs"
+          echo "test=$text" >> "$GITHUB_OUTPUT"
 
   job2:
     runs-on: ubuntu-slim
