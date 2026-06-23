@@ -11,19 +11,16 @@ jobs:
         uses: actions/checkout@v7
   build:
     runs-on: [self-hosted, linux-practice]
-    needs: code
     steps:
       - name: build
         run: echo "build successful"
   test:
     runs-on: [self-hosted, linux-practice]
-    needs: build
     steps:
       - name: test
         run: echo "test completed, all test passed"
   deploy:
     runs-on: [self-hosted, linux-practice]
-    needs: test
     steps:
       - name: deploy
         run: echo "ready to deploy"
