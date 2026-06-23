@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: step1
         if: ${{ github.ref_name == 'master' }}
-        run: actions/checkout@v7
+        uses: actions/checkout@v7
       - id: step2
         if: ${{ github.event_name == 'workflow-dispatch' }}
         run: echo "this step fails"
