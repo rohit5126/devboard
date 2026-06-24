@@ -12,16 +12,21 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - id: cache
-        uses: actions/cache@v6
-        with: 
-          path: frontend/dist/
+          
+      - name: cache-dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/frontend/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
           
       - name: build
         run: |
           cd frontend
           npm install
           npm run build
+          
       - name: upload
         uses: actions/upload-artifact@v4
         with:
