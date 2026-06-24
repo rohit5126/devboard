@@ -24,8 +24,11 @@ jobs:
         uses: actions/download-artifact@v4
         with: 
           name: log-file
+          path: app/
       - name: print
         run: |
+          cd app
+          touch logfile2.txt
           ls
       
         
