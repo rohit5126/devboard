@@ -1,0 +1,33 @@
+name: artifacts
+on: 
+  workflow_dispatch: 
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: log file
+        run: |
+          echo "this is log file" >> logfile.txt
+          ls
+      - name: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: log-file
+          path: logfile.txt
+
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: download
+        uses: actions/download-artifact@v4
+        with: 
+          name: log-file
+          path: app/
+      - name: print
+        run: |
+          mkdir app
+          ls
+      
+        
+        
