@@ -1,0 +1,31 @@
+name: docker-login-push
+description: 'this file is used to dokcer login and push in docker hub'
+
+inputs:
+  username:
+    required: true
+    type: string
+  password: 
+    required: true
+    type: string
+  code-path: 
+    required: true
+    type: string
+  
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Docker-login
+      uses: docker/login-action@v4
+      with:
+        username: ${{ inputs.username }}
+        password: ${{ inputs.password }}
+    - name: docker-build-push
+      uses: docker/build-push-action@v7
+      with:
+        context: ${{ inputs.code-path }}
+        push: true
+        tags: ${{ inputs.username }}/devboard-${{ inputs.code-path }}:latest
+      
+  
