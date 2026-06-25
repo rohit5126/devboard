@@ -1,14 +1,12 @@
 name: devboard
 on:
-  workflow_dispatch:
-  
+  workflow_dispatch:  
 jobs:
   frontend:
     runs-on: ubuntu-latest
     steps:
       - name: code-checkout
-        uses: actions/checkout@v7
-        
+        uses: actions/checkout@v7    
       - name: setup-node-test-lint
         id: setup
         uses: ./.github/actions/node-setup/
@@ -18,23 +16,13 @@ jobs:
           code_path: frontend/
       - name: status
         run: |
-          echo " ${{ steps.setup.outputs.out }}"
-          
-      - name: Docker-login
-        uses: docker/login-action@v4
+          echo " ${{ steps.setup.outputs.out }}"  
+      - name: docker-logn-push
+        uses: ./.github/actions/docker-setup
         with:
           username: ${{ vars.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
-
-      - name: docker-build-push
-        if: ${{ github.ref_name == 'master' }}
-        uses: docker/build-push-action@v7
-        with:
-          context: frontend/
-          push: true
-          tags: ${{ vars.DOCKER_USERNAME }}/devboard-frontend:latest
-
-          
+          code-path: frontend/        
   backend:
     runs-on: ubuntu-latest
     steps:
@@ -50,21 +38,13 @@ jobs:
           code-path: backend/
       - name: status
         run: |
-          echo " ${{ steps.setup.outputs.out }}"
-        
-      - name: docker login
-        uses: docker/login-action@v4
+          echo " ${{ steps.setup.outputs.out }}" 
+      - name: docker-logn-push
+        uses: ./.github/actions/docker-setup
         with:
           username: ${{ vars.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
-
-      - name: docker build and push
-        if: ${{ github.ref_name == 'master' }}
-        uses: docker/build-push-action@v7
-        with:
-          context: backend/
-          push: true
-          tags: ${{ vars.DOCKER_USERNAME }}/devboard-backend:latest
+          code-path: frontend/ 
           
       
         
