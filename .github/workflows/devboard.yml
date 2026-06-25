@@ -1,7 +1,7 @@
 name: devboard
 on:
   push:
-    branches: master
+    branches: '**'
 jobs:
   frontend:
     runs-on: ubuntu-latest
