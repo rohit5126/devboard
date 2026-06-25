@@ -3,6 +3,7 @@ on:
   workflow_call:
     outputs:
       data:
+        description: "version id "
         value: ${{ jobs.job1.outputs.out1 }}
     inputs:
       env:
