@@ -41,12 +41,16 @@ jobs:
       - name: code-checkout
         uses: actions/checkout@v7
       - name: go-setup-test
+        id: setup
         uses: ./.github/actions/go-setup/
         with:
           go-version: 1.23
           go-version-file: backend/go.mod
           cache-dependency-path: backend/go.sum
           code-path: backend/
+      - name: status
+        run: |
+          echo " ${{ steps.setup.outputs.out }}"
         
       - name: docker login
         uses: docker/login-action@v4
