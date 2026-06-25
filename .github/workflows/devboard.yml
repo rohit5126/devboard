@@ -42,7 +42,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: code-checkout
-        uses: actions/code-checkout@v7
+        uses: actions/checkout@v7
       - name: setup-go
         uses: actions/setup-go@v6
         with:
