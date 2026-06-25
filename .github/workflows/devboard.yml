@@ -30,6 +30,7 @@ jobs:
           password: ${{ secrets.DOCKER_TOKEN }}
 
       - name: docker-build-push
+        if: ${{ github.ref_name == 'master' }}
         uses: docker/build-push-action@v7
         with:
           context: frontend/
