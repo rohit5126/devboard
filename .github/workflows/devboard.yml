@@ -1,4 +1,4 @@
-name: devboard
+name: Continous Integration
 on:
   push:  
 jobs:
@@ -8,7 +8,6 @@ jobs:
       - name: code-checkout
         uses: actions/checkout@v7    
       - name: setup-node-test-lint
-        id: setup
         uses: ./.github/actions/node-setup/
         with:
           node-version: 20
@@ -27,7 +26,6 @@ jobs:
       - name: code-checkout
         uses: actions/checkout@v7
       - name: go-setup-test
-        id: setup
         uses: ./.github/actions/go-setup/
         with:
           go-version: 1.23
