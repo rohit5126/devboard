@@ -34,7 +34,7 @@ services:
   backend:
     container_name: backend
     # build = local; image = the tag CI pushes and CD pulls (IMAGE_TAG, else latest).
-    build: ./backend
+    image: rohit5126/devboard-backend:latest
     environment:
       PORT: "${BACKEND_PORT}"
       POSTGRES_URL: "postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?sslmode=disable"
@@ -48,7 +48,7 @@ services:
 
   frontend:
     container_name: devboard-frontend
-    build: ./frontend
+    image: rohit5126/devboard-frontend:latest
     depends_on:
       - backend
     networks:
