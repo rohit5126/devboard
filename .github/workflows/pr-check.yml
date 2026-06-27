@@ -17,7 +17,6 @@ jobs:
         uses: pelotech/github-action-file-size-checker@v0.2.1
         with:
           max_file_size_kib: '50'
-
   job2:
     runs-on: ubuntu-latest
     steps:
@@ -26,10 +25,10 @@ jobs:
           startsWith(github.head_ref, 'feature/') || 
           startsWith(github.head_ref, 'docs/') || 
           startsWith(github.head_ref, 'fix/')
-        run: echo "branch name accurate, move forward with merging "
-      - name: status
-        if: failure()
-        run: echo "branch name not matching create another request"
+        run: |
+          echo "❌ FAIL FAST: Invalid branch name '${{ github.head_ref }}'."
+          echo "Allowed prefixes are feature/*, docs/*, or fix/*"
+          exit 1
   job3:
     runs-on: ubuntu-latest
     steps:
