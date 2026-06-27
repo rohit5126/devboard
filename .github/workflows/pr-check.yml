@@ -19,13 +19,19 @@ jobs:
           max_file_size_kib: '50'
 
   job2:
+    strategy:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: branch_name
-        if:  github.head_ref != 'feature/*' || 'fix/*' 
-        run: |
-          echo " not a good branch name"
-          exit 1
+      - name: branch-check
+        if: >-
+          startsWith(github.head_ref, 'feature/') || 
+          startsWith(github.head_ref, 'docs/') || 
+          startsWith(github.head_ref, 'fix/')
+        run: echo "branch name accurate, move forward with merging "
+      - name: status
+        if: failure()
+        run: echo "branch name not matching create another request"
   job3:
     runs-on: ubuntu-latest
     steps:
