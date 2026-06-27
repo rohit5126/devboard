@@ -1,0 +1,22 @@
+name: schedule
+on:  
+  schedule:
+    - cron: '1 */1 * * *'
+  workflow_dispatch: 
+  push:
+    branches: [dev, feature/test]
+jobs: 
+  health:
+    env:
+      url: ${{ 'https://google.com/' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: curl
+        run: |
+          STATUS_CODE=$(curl --silent --output /dev/null --write-out "%{http_code}" $url)
+          echo "HTTP Status Code: $STATUS_CODE"
+
+          if [ $STATUS_CODE -ne 200 ]; then
+            echo "wrong status code"
+            exit 1
+          fi
