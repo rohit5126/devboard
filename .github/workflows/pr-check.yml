@@ -22,9 +22,9 @@ jobs:
     steps:
       - name: branch-check
         if: >-
-          !(startsWith(github.head_ref, 'feature/')) || 
-          !(startsWith(github.head_ref, 'docs/')) || 
-          !(startsWith(github.head_ref, 'fix/'))
+          !(startsWith(github.head_ref, 'feature/') || 
+          startsWith(github.head_ref, 'docs/') || 
+          startsWith(github.head_ref, 'fix/'))
         run: |
           echo "invalid branch name"
           exit 1
