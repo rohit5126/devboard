@@ -1,6 +1,7 @@
 name: Continuous Integration
 on:
-  push:  
+  push: 
+    paths: ./.github/workflows/Continuous-Integration.yml
 jobs:
   frontend:
     runs-on: ubuntu-latest
