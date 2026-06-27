@@ -1,0 +1,15 @@
+name: schedule
+on:  
+  schedule:
+    - cron: '1 */1 * * *'
+  workflow_dispatch: 
+jobs: 
+  health:
+    runs-on: ubuntu-latest
+    steps:
+      - name: curl
+        uses: sozo-design/curl@v1.0.2
+        with:
+          args: https://httpbin.org/get
+          
+   
