@@ -7,11 +7,19 @@ on:
     branches: '**'
 jobs: 
   health:
+    env:
+      url: ${{ 'https://api.github.com/' }}
     runs-on: ubuntu-latest
     steps:
       - name: curl
-        uses: sozo-design/curl@v1.0.2
-        with:
-          args: https://httpbin.org/get
+        run: |
+          STATUS_CODE=$(curl --silent --output /dev/null --write-out "%{http_code}" $url)
+          echo "HTTP Status Code: $STATUS_CODE"
+
+          if [ $STATUS_CODE -ne 200 ]; then
+            echo "wrong status code"
+            exit 1
+          fi
+          
           
    
