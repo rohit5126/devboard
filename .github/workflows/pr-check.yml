@@ -22,13 +22,13 @@ jobs:
     steps:
       - name: branch-check
         if: >-
-          startsWith(github.head_ref, 'feature/') || 
-          startsWith(github.head_ref, 'docs/') || 
-          startsWith(github.head_ref, 'fix/')
+          !(startsWith(github.head_ref, 'feature/')) || 
+          !(startsWith(github.head_ref, 'docs/')) || 
+          !(startsWith(github.head_ref, 'fix/'))
         run: |
-          echo "❌ FAIL FAST: Invalid branch name '${{ github.head_ref }}'."
-          echo "Allowed prefixes are feature/*, docs/*, or fix/*"
+          echo "invalid branch name"
           exit 1
+        
   job3:
     runs-on: ubuntu-latest
     steps:
