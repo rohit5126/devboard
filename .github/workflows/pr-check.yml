@@ -10,11 +10,31 @@ jobs:
     steps:
       - name: code
         uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
       - name: pr_check
         id: size_check
         uses: pelotech/github-action-file-size-checker@v0.2.1
         with:
           max_file_size_kib: '50'
 
+  job2:
+    runs-on: ubuntu-latest
+    steps:
+      - name: branch_name
+        if:  github.head_ref != 'feature/*' || 'fix/*' 
+        run: |
+          echo " not a good branch name"
+          exit 1
+  job3:
+    runs-on: ubuntu-latest
+    steps:
+      - name: pr_body_check
+        continue-on-error: true
+        if: github.event.pull_request.body == ''
+        run: echo "warning -PR description is empty"
+        
+        
+        
 
         
