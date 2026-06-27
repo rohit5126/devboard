@@ -15,6 +15,7 @@ jobs:
 
       - name: error
         if: success()
-        run: echo" curl unsuccessful"
-      
+        run: |
+          echo " curl unsuccessful"
+          exit 1
       
