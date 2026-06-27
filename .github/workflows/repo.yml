@@ -1,8 +1,7 @@
 name: repo-dispatch
 on: 
   repository_dispatch:
-    types:
-      - deploy-request
+    types: [deploy-event]
 
 jobs:
  job1:
