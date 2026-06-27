@@ -8,7 +8,7 @@ on:
 jobs: 
   health:
     env:
-      url: ${{ 'https://api.github.com/' }}
+      url: ${{ 'https://google.com/' }}
     runs-on: ubuntu-latest
     steps:
       - name: curl
