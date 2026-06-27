@@ -4,7 +4,8 @@ on:
     - cron: '1 */1 * * *'
   workflow_dispatch: 
   push:
-    branches: [dev, test]
+    branches:
+      - master
 jobs: 
   health:
     env:
