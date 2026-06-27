@@ -14,7 +14,7 @@ jobs:
           echo " curl successful "
 
       - name: error
-        if: success()
+        if: failure()
         run: |
           echo " curl unsuccessful"
           exit 1
