@@ -1,0 +1,12 @@
+name: repo-dispatch
+on: 
+  repository_dispatch:
+    types:
+      - deploy-request
+
+jobs:
+ job1:
+   runs-on: ubuntu-latest
+   steps:
+     - run: echo "${{ github.event.client_payload.environment }}"
+     
