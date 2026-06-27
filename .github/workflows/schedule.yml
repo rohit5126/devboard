@@ -2,14 +2,11 @@ name: schedule
 on:  
   schedule:
     - cron: '1 */1 * * *'
-  workflow_dispatch: 
-  push:
-    branches:
-      - master
+  workflow_dispatch:   
 jobs: 
   health:
     env:
-      url: ${{ 'https://google.com/' }}
+      url: ${{ 'https://api.github.com/' }}
     runs-on: ubuntu-latest
     steps:
       - name: curl
