@@ -1,10 +1,9 @@
 name: Continuous Integration
 on:
   push: 
-    paths: ./.github/workflows/Continuous-Integration.yml
 jobs:
   frontend:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
       - name: code-checkout
         uses: actions/checkout@v7    
